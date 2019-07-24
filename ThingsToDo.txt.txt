@@ -1,0 +1,20 @@
+m kg unidade
+
+login e senha
+
+atalhos de teclado, teclado, concluir
+
+pagamento - dinheiro, crédito ou debito
+
+relatorios - diario, semanal e mensal
+
+retirar do estoque
+colocar no estoque
+ver estoque
+editar estoque (em conjunto (por nome))
+    atualizar o preço tudo junto pelo nome
+
+
+imprimir cupom não fiscal, salvar o cupom
+    perguntar sim ou não
+
