@@ -1,9 +1,3 @@
-<?php
-include_once("./database/constants.php");
-if (!isset($_SESSION["userid"])) {
-	header("location:".DOMAIN."/");
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +10,8 @@ if (!isset($_SESSION["userid"])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  	<script type="text/javascript" src="./js/main.js"></script>
- </head>
+</head>
 <body>
-	<!-- Navbar -->
-	<?php include_once("./templates/header.php"); ?>
-	<br/><br/>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Estoque Bazar 43</title>
+	<script src="./includes/remote_includes/jquery.min.js"></script>
+	<script src="./includes/remote_includes/popper.min.js"></script>
+    <script src="./includes/remote_includes/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./includes/remote_includes/bootstrap.min.css">
+ 	<link rel="stylesheet" type="text/css" href="./includes/remote_includes/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./includes/style.css">
+	<link rel="shortcut icon" href="./includes/images/favicon.ico" />
+ 	<script type="text/javascript" rel="stylesheet" src="./includes/js/main.js"></script>
+ </head>
+<body>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">Sistema de estoque Bazar 43</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav justify-content-end">
+				<li class="nav-item active">
+				<a class="nav-link" href="#"><i class="fa fa-home">&nbsp;</i>Início <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+				<a class="nav-link" href="#"><i class="fa fa-sign-out">&nbsp;</i>Sair <span class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<br/><br/>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="jumbotron" style="width:100%;height:100%;">
+					<h1>Welcome Admin,</h1>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+						      <div class="card-body">
+						        <h4 class="card-title">New Orders</h4>
+						        <p class="card-text">Here you can make invoices and create new orders</p>
+						        <a href="new_order.php" class="btn btn-primary">New Orders</a>
+						      </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p></p>
+	<p></p>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card">
+						<div class="card-body">
+						<h4 class="card-title">Categories</h4>
+						<p class="card-text">Here you can manage your categories and you add new parent and sub categories</p>
+						<a href="#" data-toggle="modal" data-target="#form_category" class="btn btn-primary">Add</a>
+						<a href="manage_categories.php" class="btn btn-primary">Manage</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+						<div class="card-body">
+						<h4 class="card-title">Brands</h4>
+						<p class="card-text">Here you can manage your brand and you add new brand</p>
+						<a href="#" data-toggle="modal" data-target="#form_brand" class="btn btn-primary">Add</a>
+						<a href="manage_brand.php" class="btn btn-primary">Manage</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+						<div class="card-body">
+						<h4 class="card-title">Products</h4>
+						<p class="card-text">Here you can manage your prpducts and you add new products</p>
+						<a href="#" data-toggle="modal" data-target="#form_products" class="btn btn-primary">Add</a>
+						<a href="manage_product.php" class="btn btn-primary">Manage</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="form_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  <form id="category_form" onsubmit="return false">
+				<div class="form-group">
+				  <label>Category Name</label>
+				  <input type="text" class="form-control" name="category_name" id="category_name" aria-describedby="emailHelp" placeholder="Enter email">
+				  <small id="cat_error" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group">
+				  <label for="exampleInputPassword1">Parent Category</label>
+				  <select class="form-control" id="parent_cat" name="parent_cat">              
+				  </select>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			  </form>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="form_products" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Add new products</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  <form id="product_form" onsubmit="return false">
+				<div class="form-row">
+				  <div class="form-group col-md-6">
+					<label>Date</label>
+					<input type="text" class="form-control" name="added_date" id="added_date" value="<?php echo date("Y-m-d"); ?>" readonly/>
+				  </div>
+				  <div class="form-group col-md-6">
+					<label>Product Name</label>
+					<input type="text" class="form-control" name="product_name" id="product_name" placeholder="Enter Product Name" required>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label>Category</label>
+				  <select class="form-control" id="select_cat" name="select_cat" required/>
+					
+	  
+					
+				  </select>
+				</div>
+				<div class="form-group">
+				  <label>Brand</label>
+				  <select class="form-control" id="select_brand" name="select_brand" required/>
+					
+	  
+					
+				  </select>
+				</div>
+				<div class="form-group">
+				  <label>Product Price</label>
+				  <input type="text" class="form-control" id="product_price" name="product_price" placeholder="Enter Price of Product" required/>
+				</div>
+				<div class="form-group">
+				  <label>Quantity</label>
+				  <input type="text" class="form-control" id="product_qty" name="product_qty" placeholder="Enter Quantity" required/>
+				</div>
+				<button type="submit" class="btn btn-success">Add Product</button>
+			  </form>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="form_brand" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Add New Brand</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  <form id="brand_form" onsubmit="return false">
+				<div class="form-group">
+				  <label>Brand Name</label>
+				  <input type="text" class="form-control" name="brand_name" id="brand_name" placeholder="Enter Brand Name">
+				  <small id="brand_error" class="form-text text-muted"></small>
+				</div>
+				<button type="submit" class="btn btn-primary">Add</button>
+			  </form>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+</body>
+</html>

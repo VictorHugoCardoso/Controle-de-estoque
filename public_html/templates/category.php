@@ -17,10 +17,7 @@
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Parent Category</label>
-            <select class="form-control" id="parent_cat" name="parent_cat">
-              
-
-              
+            <select class="form-control" id="parent_cat" name="parent_cat">              
             </select>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
