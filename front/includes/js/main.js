@@ -53,7 +53,7 @@ $(document).ready(function(){
 	fetch_category();
 	function fetch_category(){
 		$.ajax({
-			url : DOMAIN+"/includes/process.php",
+			url : "./",
 			method : "POST",
 			data : {getCategory:1},
 			success : function(data){
@@ -69,7 +69,7 @@ $(document).ready(function(){
 	fetch_brand();
 	function fetch_brand(){
 		$.ajax({
-			url : DOMAIN+"/includes/process.php",
+			url : "./",
 			method : "POST",
 			data : {getBrand:1},
 			success : function(data){
@@ -86,7 +86,7 @@ $(document).ready(function(){
 			$("#cat_error").html("<span class='text-danger'>Please Enter Category Name</span>");
 		}else{
 			$.ajax({
-				url : DOMAIN+"/includes/process.php",
+				url : "./",
 				method : "POST",
 				data  : $("#category_form").serialize(),
 				success : function(data){
@@ -111,7 +111,7 @@ $(document).ready(function(){
 			$("#brand_error").html("<span class='text-danger'>Please Enter Brand Name</span>");
 		}else{
 			$.ajax({
-				url : DOMAIN+"/includes/process.php",
+				url : "./",
 				method : "POST",
 				data : $("#brand_form").serialize(),
 				success : function(data){
@@ -132,7 +132,7 @@ $(document).ready(function(){
 	//add product
 	$("#product_form").on("submit",function(){
 		$.ajax({
-			url : DOMAIN+"/includes/process.php",
+			url : "./",
 			method : "POST",
 			data : $("#product_form").serialize(),
 			success : function(data){
