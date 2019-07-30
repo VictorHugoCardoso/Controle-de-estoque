@@ -15,21 +15,20 @@
 </head>
 <body>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">Sistema de estoque Bazar 43</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav justify-content-end">
-				<li class="nav-item active">
-				<a class="nav-link" href="#"><i class="fa fa-home">&nbsp;</i>Início <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item active">
-				<a class="nav-link" href="#"><i class="fa fa-sign-out">&nbsp;</i>Sair <span class="sr-only">(current)</span></a>
-				</li>
-			</ul>
-		</div>
+	<nav class="navbar navbar-expand flex-column flex-md-row navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">
+			Sistema de estoque Bazar 43
+		</a>
+		<ul class="navbar-nav justify-content-end">
+			<li class="nav-item active">
+			<a class="nav-link" href="#"><i class="fa fa-home">&nbsp;</i>Início <span class="sr-only">(current)</span></a>
+			</li>
+		</ul>	
+		<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+			<li class="nav-item active">
+			<a class="nav-link" href="#"><i class="fa fa-sign-out">&nbsp;</i>Sair <span class="sr-only">(current)</span></a>
+			</li>
+		</ul>
 	</nav>
 	<br/><br/>
 	<div class="container">
@@ -37,17 +36,6 @@
 			<div class="col-md-12">
 				<div class="" style="width:100%;height:100%;">
 					<img src="./includes/images/bazar43.jpeg" class="img-fluid rounded mx-auto d-block" alt="Bazar43">
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="card">
-						      <div class="card-body">
-						        <h4 class="card-title">New Orders</h4>
-						        <p class="card-text">Here you can make invoices and create new orders</p>
-						        <a href="#" class="btn btn-primary">New Orders</a>
-						      </div>
-						    </div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -55,12 +43,16 @@
 	<p></p>
 	<p></p>
 	<div class="container">
+		<div class="row justify-content-center mb-3">
+			<div class="col-4">
+				<button type="button" class="btn btn-primary btn-lg btn-block"><i class="fa fa-folder-open">&nbsp;</i>Novo Pedido</button>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card">
 						<div class="card-body">
-						<h4 class="card-title">Categories</h4>
-						<p class="card-text">Here you can manage your categories and you add new parent and sub categories</p>
+						<h4 class="card-title">Editar estoque</h4>
 						<a href="#" data-toggle="modal" data-target="#form_category" class="btn btn-primary">Add</a>
 						<a href="#" class="btn btn-primary">Manage</a>
 					</div>
@@ -135,7 +127,7 @@
 				<div class="form-row">
 				  <div class="form-group col-md-6">
 					<label>Date</label>
-					<input type="text" class="form-control" name="added_date" id="added_date" value="<?php echo date("Y-m-d"); ?>" readonly/>
+					<input type="text" class="form-control" name="added_date" id="added_date" value=""); ?>" readonly/>
 				  </div>
 				  <div class="form-group col-md-6">
 					<label>Product Name</label>

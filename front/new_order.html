@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Estoque Bazar 43</title>
+	<script src="./includes/remote_includes/jquery.min.js"></script>
+	<script type="text/javascript" rel="stylesheet" src="./includes/js/main.js"></script>
+	<script src="./includes/remote_includes/popper.min.js"></script>
+	<script src="./includes/remote_includes/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./includes/remote_includes/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./includes/css/style.css">
+	<link rel="shortcut icon" href="./includes/images/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ </head>
+<body>
+<div class="overlay"><div class="loader"></div></div>
+	<nav class="navbar navbar-expand flex-column flex-md-row navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">
+			Sistema de estoque Bazar 43
+		</a>
+		<ul class="navbar-nav justify-content-end">
+			<li class="nav-item active">
+			<a class="nav-link" href="#"><i class="fa fa-home">&nbsp;</i>Início <span class="sr-only">(current)</span></a>
+			</li>
+		</ul>	
+		<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+			<li class="nav-item active">
+			<a class="nav-link" href="#"><i class="fa fa-sign-out">&nbsp;</i>Sair <span class="sr-only">(current)</span></a>
+			</li>
+		</ul>
+	</nav>
+	<br/><br/>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 mx-auto mb-4">
+				<div class="card" style="box-shadow:0 0 25px 0 lightgrey;">
+				  <div class="card-header">
+				   	<h4>Nova ordem #32454</h4>
+				  </div>
+				  <div class="card-body">
+				  	<form id="get_order_data" onsubmit="return false">
+				  		<div class="form-group row">
+				  			<label class="col-sm-3 col-form-label" align="right">Data</label>
+				  			<div class="col-sm-6">
+				  				<input type="text" id="order_date" name="order_date" class="form-control form-control-sm" value="">
+				  			</div>
+				  		</div>
+					</div>
+				  		<div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
+				  			<div class="card-body">
+				  				<h3>Itens</h3>
+				  				<table align="center" style="width:800px;">
+		                            <thead>
+		                              <tr>
+		                                <th>#</th>
+		                                <th style="text-align:center;">Nome</th>
+		                                <th style="text-align:center;">Quantidade</th>
+		                                <th style="text-align:center;">Qtde. total</th>
+		                                <th style="text-align:center;">Preço</th>
+		                                <th>Total</th>
+		                              </tr>
+		                            </thead>
+		                            <tbody id="invoice_item">
+		<!--<tr>
+		    <td><b id="number">1</b></td>
+		    <td>
+		        <select name="pid[]" class="form-control form-control-sm" required>
+		            <option>Washing Machine</option>
+		        </select>
+		    </td>
+		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm"></td>   
+		    <td><input name="qty[]" type="text" class="form-control form-control-sm" required></td>
+		    <td><input name="price[]" type="text" class="form-control form-control-sm" readonly></td>
+		    <td>Rs.1540</td>
+		</tr>-->
+		                            </tbody>
+		                        </table> <!--Table Ends-->
+		                        <center style="padding:10px;">
+		                        	<button id="add" style="width:150px;" class="btn btn-success"><i class="fa fa-plus"></i></button>
+		                        	<button id="remove" style="width:150px;" class="btn btn-danger"><i class="fa fa-minus"></i></button>
+		                        </center>
+				  			</div> <!--Crad Body Ends-->
+				  		</div> <!-- Order List Crad Ends-->
+
+				  	<p></p>
+                    <div class="form-group row">
+                      <label for="sub_total" class="col-sm-3 col-form-label" align="right">Sub Total</label>
+                      <div class="col-sm-6">
+                        <input type="text" readonly name="sub_total" class="form-control form-control-sm" id="sub_total" required/>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="discount" class="col-sm-3 col-form-label" align="right">Desconto</label>
+                      <div class="col-sm-6">
+                        <input type="text" name="discount" class="form-control form-control-sm" id="discount" required/>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="paid" class="col-sm-3 col-form-label" align="right">Pago</label>
+                      <div class="col-sm-6">
+                        <input type="text" name="paid" class="form-control form-control-sm" id="paid" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="payment_type" class="col-sm-3 col-form-label" align="right">Forma de pagamento</label>
+                      <div class="col-sm-6">
+                        <select name="payment_type" class="form-control form-control-sm" id="payment_type" required/>
+                          <option>Dinheiro</option>
+                          <option>Cartão de Crédito</option>
+                          <option>Cartão de Débito</option>
+                        </select>
+                      </div>
+                    </div>
+                    <center>
+                      <input type="submit" id="order_form" style="width:150px;" class="btn btn-info" value="Finalizar venda">
+                      <input type="submit" id="print_invoice" style="width:150px;" class="btn btn-success d-none" value="Print Invoice">
+                    </center>
+				  	</form>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+</body>
+</html>
