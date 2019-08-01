@@ -1,0 +1,16 @@
+{
+  "presets": [
+    [
+        "env",
+        {
+            "targets": { "node": "8.9.3" }
+        }
+    ]
+  ],
+    "plugins": [
+      "transform-es2017-object-entries",
+      "transform-object-rest-spread",
+      "transform-es2015-destructuring",
+      "array-includes"
+    ]
+}
