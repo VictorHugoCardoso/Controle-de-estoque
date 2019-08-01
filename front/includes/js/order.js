@@ -1,6 +1,12 @@
 $(document).ready(function(){
 	var DOMAIN = "http://localhost/inv_project/public_html";
 
+	$('.date').mask('00/00/0000', {placeholder: "__/__/____"});
+	$('.money').mask('000.000.000.000.000,00', {reverse: true});
+  	$('.money2').mask("#.##0,00", {reverse: true});
+	$('.time').mask('00:00:00');
+
+
 	addNewRow();
 
 	$("#add").click(function(){
@@ -104,7 +110,6 @@ $(document).ready(function(){
 	/*Order Accepting*/
 
 	$("#order_form").click(function(){
-
 		var invoice = $("#get_order_data").serialize();
 		if ($("#cust_name").val() === "") {
 			alert("Plaese enter customer name");
@@ -126,20 +131,9 @@ $(document).ready(function(){
 							window.location.href = DOMAIN+"/includes/invoice_bill.php?invoice_no="+data+"&"+invoice;
 						}
 					}
-
-						
-						
-
-					
-
 				}
 			});
 		}
-		
-			
-		
-		
-
 	});
 
 });

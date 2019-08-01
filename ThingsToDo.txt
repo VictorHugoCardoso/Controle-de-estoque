@@ -6,7 +6,9 @@ atalhos de teclado, teclado, concluir
 
 pagamento - dinheiro, crédito ou debito
 
-relatorios - diario, semanal e mensal elgini9
+relatorios - diario, semanal e mensal 
+
+impressora elgini9
 
 retirar do estoque
 colocar no estoque

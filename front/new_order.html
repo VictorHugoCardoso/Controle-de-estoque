@@ -3,14 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" href="./includes/images/favicon.ico" />
 	<title>Estoque Bazar 43</title>
 	<script src="./includes/remote_includes/jquery.min.js"></script>
-	<script type="text/javascript" rel="stylesheet" src="./includes/js/main.js"></script>
+	<script type="text/javascript" rel="stylesheet" src="./includes/js/order.js"></script>
+	<script type="text/javascript" rel="stylesheet" src="./includes/js/jquery.mask.js"></script>
 	<script src="./includes/remote_includes/popper.min.js"></script>
 	<script src="./includes/remote_includes/bootstrap.min.js"></script>
+	<script src="./includes/js/bootstrap-select.min.js"></script>
+	<script src="./includes/js/bootstrap-select.min-language.js"></script>
+
 	<link rel="stylesheet" href="./includes/remote_includes/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./includes/css/style.css">
-	<link rel="shortcut icon" href="./includes/images/favicon.ico" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  </head>
 <body>
@@ -44,63 +49,72 @@
 				  		<div class="form-group row">
 				  			<label class="col-sm-3 col-form-label" align="right">Data</label>
 				  			<div class="col-sm-6">
-				  				<input type="text" id="order_date" name="order_date" class="form-control form-control-sm" value="">
+				  				<input type="text" id="order_date" name="order_date" class="form-control form-control-sm date" value="">
 				  			</div>
 				  		</div>
 					</div>
 				  		<div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
 				  			<div class="card-body">
 				  				<h3>Itens</h3>
-				  				<table align="center" style="width:800px;">
+				  				<table align="center" style="width:800px;" class="table">
 		                            <thead>
 		                              <tr>
 		                                <th>#</th>
-		                                <th style="text-align:center;">Nome</th>
-		                                <th style="text-align:center;">Quantidade</th>
-		                                <th style="text-align:center;">Qtde. total</th>
-		                                <th style="text-align:center;">Preço</th>
-		                                <th>Total</th>
+		                                <th style="text-align:center;" scope="col" width="40%">Nome</th>
+		                                <th style="text-align:center;" scope="col">Estoque</th>
+		                                <th style="text-align:center;" scope="col">Quantidade</th>
+		                                <th style="text-align:center;" scope="col">Preço</th>
+		                                <th style="text-align:center;" scope="col">Total</th>
 		                              </tr>
 		                            </thead>
 		                            <tbody id="invoice_item">
-		<!--<tr>
-		    <td><b id="number">1</b></td>
-		    <td>
-		        <select name="pid[]" class="form-control form-control-sm" required>
-		            <option>Washing Machine</option>
-		        </select>
-		    </td>
-		    <td><input name="tqty[]" readonly type="text" class="form-control form-control-sm"></td>   
-		    <td><input name="qty[]" type="text" class="form-control form-control-sm" required></td>
-		    <td><input name="price[]" type="text" class="form-control form-control-sm" readonly></td>
-		    <td>Rs.1540</td>
-		</tr>-->
+										<tr>
+											<th scope="row">1</th>
+											<td>
+												<select name="pid[]" class="selectpicker form-control form-control-sm " title="Selecione..." data-live-search="true" required>
+													<option data-tokens="1">Item 1 Item 1</option>
+													<option data-tokens="2">Item 2</option>
+													<option data-tokens="3">Item 3</option>
+													<option data-tokens="4">Item 4</option>
+													<option data-tokens="5">Item 5</option>
+												</select>
+											</td>
+											<td><input name="tqty[]" readonly type="text" class="form-control form-control-sm"></td>   
+											<td><input name="qty[]" type="text" class="form-control form-control-sm" required></td>
+											<td><input name="price[]" type="text" class="form-control form-control-sm" readonly></td>
+											<td><input type="text" class="form-control form-control-sm money" value="100000"></td>
+										</tr>
 		                            </tbody>
-		                        </table> <!--Table Ends-->
+		                        </table> 
 		                        <center style="padding:10px;">
 		                        	<button id="add" style="width:150px;" class="btn btn-success"><i class="fa fa-plus"></i></button>
 		                        	<button id="remove" style="width:150px;" class="btn btn-danger"><i class="fa fa-minus"></i></button>
 		                        </center>
 				  			</div> <!--Crad Body Ends-->
 				  		</div> <!-- Order List Crad Ends-->
-
 				  	<p></p>
                     <div class="form-group row">
                       <label for="sub_total" class="col-sm-3 col-form-label" align="right">Sub Total</label>
                       <div class="col-sm-6">
-                        <input type="text" readonly name="sub_total" class="form-control form-control-sm" id="sub_total" required/>
+                        <input type="text" readonly name="sub_total" class="form-control form-control-sm money" id="sub_total" required/>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="discount" class="col-sm-3 col-form-label" align="right">Desconto</label>
                       <div class="col-sm-6">
-                        <input type="text" name="discount" class="form-control form-control-sm" id="discount" required/>
+                        <input type="text" name="discount" class="form-control form-control-sm money" id="discount" required/>
                       </div>
-                    </div>
+					</div>
+					<div class="form-group row">
+						<label for="discount" class="col-sm-3 col-form-label" align="right"><b>TOTAL</b></label>
+						<div class="col-sm-6">
+						  <input type="text" name="total" class="form-control form-control-sm money" id="total" required/>
+						</div>
+					  </div>
                     <div class="form-group row">
                       <label for="paid" class="col-sm-3 col-form-label" align="right">Pago</label>
                       <div class="col-sm-6">
-                        <input type="text" name="paid" class="form-control form-control-sm" id="paid" required>
+                        <input type="text" name="paid" class="form-control form-control-sm money" id="paid" required>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -114,7 +128,7 @@
                       </div>
                     </div>
                     <center>
-                      <input type="submit" id="order_form" style="width:150px;" class="btn btn-info" value="Finalizar venda">
+                      <input type="submit" id="order_form" style="width:150px;" class="btn btn-info mb-4" value="Finalizar venda">
                       <input type="submit" id="print_invoice" style="width:150px;" class="btn btn-success d-none" value="Print Invoice">
                     </center>
 				  	</form>
@@ -123,8 +137,5 @@
 			</div>
 		</div>
 	</div>
-	
-
-
 </body>
 </html>
