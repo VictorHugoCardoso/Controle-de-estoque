@@ -3,35 +3,34 @@ $(document).ready(function(){
 
 	$('.date').mask('00/00/0000', {placeholder: "__/__/____"});
 	$('.money').mask('000.000.000.000.000,00', {reverse: true});
-  	$('.money2').mask("#.##0,00", {reverse: true});
 	$('.time').mask('00:00:00');
 
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0');
+	var yyyy = today.getFullYear();
+	$('#data').val(dd+"/"+mm+"/"+yyyy);	
 
 	addNewRow();
 
 	$("#add").click(function(){
 		addNewRow();
-	})
+	});
 
 	function addNewRow(){
-		$.ajax({
-			url : DOMAIN+"/includes/process.php",
-			method : "POST",
-			data : {getNewOrderItem:1},
-			success : function(data){
-				$("#invoice_item").append(data);
-				var n = 0;
-				$(".number").each(function(){
-					$(this).html(++n);
-				})
-			}
+		/*
+		$("#invoice_item").append(data);
+		var n = 0;
+		$(".number").each(function(){
+			$(this).html(++n);
 		})
-	}
+		*/
+	};
 
-	$("#remove").click(function(){
-		$("#invoice_item").children("tr:last").remove();
+	$(".removeitem").on('click',function(){
+		console.log('oi');
 		calculate(0,0);
-	})
+	});
 
 	$("#invoice_item").delegate(".pid","change",function(){
 		var pid = $(this).val();
@@ -51,25 +50,25 @@ $(document).ready(function(){
 				calculate(0,0);
 			}
 		})
-	})
+	});
 
-	$("#invoice_item").delegate(".qty","keyup",function(){
+	$("#invoice_item").delegate(".quantidade","keyup",function(){
 		var qty = $(this);
 		var tr = $(this).parent().parent();
 		if (isNaN(qty.val())) {
-			alert("Please enter a valid quantity");
+			alert("Entre com uma quantidade valida");
 			qty.val(1);
 		}else{
-			if ((qty.val() - 0) > (tr.find(".tqty").val()-0)) {
-				alert("Sorry ! This much of quantity is not available");
-				aty.val(1);
+			if ((qty.val() - 0) > (tr.find(".estoque").val()-0)) {
+				alert("Quantidade não disponível no estoque!");
+				qty.val(1);
 			}else{
-				tr.find(".amt").html(qty.val() * tr.find(".price").val());
+				tr.find(".preco").unmask().val(qty.val() * tr.find(".precounitario").cleanVal()).mask('000.000.000.000.000,00', {reverse: true});
+
 				calculate(0,0);
 			}
 		}
-
-	})
+	});
 
 	function calculate(dis,paid){
 		var sub_total = 0;
@@ -93,18 +92,18 @@ $(document).ready(function(){
 		//$("#paid")
 		$("#due").val(due);
 
-	}
+	};
 
 	$("#discount").keyup(function(){
 		var discount = $(this).val();
 		calculate(discount,0);
-	})
+	});
 
 	$("#paid").keyup(function(){
 		var paid = $(this).val();
 		var discount = $("#discount").val();
 		calculate(discount,paid);
-	})
+	});
 
 
 	/*Order Accepting*/
