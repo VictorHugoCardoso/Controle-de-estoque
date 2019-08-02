@@ -69,8 +69,8 @@
 		                              </tr>
 		                            </thead>
 		                            <tbody id="invoice_item">
-										<tr>
-											<td scope="row"><button id="remove" class="btn btn-danger removeitem3"><i class="fa fa-minus"></i></button></td>
+										<tr class="itemrow">
+											<td scope="row"><input type="button" value="-" class="removeitem btn btn-danger"></td>
 											<th>1</th>
 											<td>
 												<select name="pid" class="selectpicker form-control form-control-sm " title="Selecione..." data-live-search="true">
@@ -86,6 +86,7 @@
 											<td><input type="text" class="form-control-plaintext form-control-sm text-center money precounitario" value="100000" readonly></td>
 											<td><input type="text" class="form-control form-control-sm text-center money preco" value="100000"></td>
 										</tr>
+										
 		                            </tbody>
 		                        </table> 
 		                        <center style="padding:10px;">
@@ -97,7 +98,7 @@
                     <div class="form-group row">
                       <label for="sub_total" class="col-sm-3 col-form-label" align="right">Sub Total</label>
                       <div class="col-sm-6">
-                        <input type="text" readonly name="sub_total" class="form-control form-control-sm money" id="sub_total"/>
+                        <input type="text" readonly name="sub_total" class="form-control form-control-sm money" id="sub_total" required/>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -107,21 +108,21 @@
                       </div>
 					</div>
 					<div class="form-group row">
-						<label for="discount" class="col-sm-3 col-form-label" align="right"><b>TOTAL</b></label>
+						<label for="total" class="col-sm-3 col-form-label" align="right"><b>TOTAL</b></label>
 						<div class="col-sm-6">
-						  <input type="text" name="total" class="form-control form-control-sm money" id="total"/>
+						  <input type="text" name="total" class="form-control form-control-sm money" id="total" required/>
 						</div>
 					  </div>
                     <div class="form-group row">
                       <label for="paid" class="col-sm-3 col-form-label" align="right">Pago</label>
                       <div class="col-sm-6">
-                        <input type="text" name="paid" class="form-control form-control-sm money" id="paid">
+                        <input type="text" name="paid" class="form-control form-control-sm money" id="paid" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="payment_type" class="col-sm-3 col-form-label" align="right">Forma de pagamento</label>
                       <div class="col-sm-6">
-                        <select name="payment_type" class="form-control form-control-sm" id="payment_type"/>
+                        <select name="payment_type" class="form-control form-control-sm" id="payment_type" required/>
                           <option>Dinheiro</option>
                           <option>Cartão de Crédito</option>
                           <option>Cartão de Débito</option>
