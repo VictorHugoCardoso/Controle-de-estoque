@@ -1,35 +1,70 @@
 $(document).ready(function(){
-	$('.date').mask('00/00/0000', {placeholder: "__/__/____"});
-	$('.money').mask("#.##0,00", {reverse: true});
-
 	var today = new Date();
 	var dd = String(today.getDate()).padStart(2, '0');
 	var mm = String(today.getMonth() + 1).padStart(2, '0');
 	var yyyy = today.getFullYear();
 	$('#data').val(dd+"/"+mm+"/"+yyyy);	
 
-	addNewRow();
-
-	$("#add").click(function(){
-		addNewRow();
-	});
-
 	function addNewRow(){
-		/*
-		$("#invoice_item").append(data);
+		var $newitem = 
+		$(' \
+		<tr class="itemrow"> \
+			<td scope="row"><input type="button" value="-" class="removeitem btn btn-danger"></td> \
+			<th class="number">1</th> \
+			<td> \
+				<select class="form-control form-control-sm " title="Selecione..." data-live-search="true"> \
+					<option data-tokens="1">Item 1 Item 1</option> \
+				</select> \
+			</td> \
+			<td><input type="text" class="form-control-plaintext form-control-sm text-center estoque" value="0" readonly ></td>   \
+			<td><input type="text" class="form-control form-control-sm text-center quantidade" value="1"></td> \
+			<td><input type="text" class="form-control-plaintext form-control-sm text-center money precounitario" value="0000" readonly></td> \
+			<td><input type="text" class="form-control form-control-sm text-center money preco" value="0000"></td> \
+		</tr>\
+		');
+
+		$("#invoice_item").append($newitem);
+		
+	};
+
+	function updateMask(){
+		$('.date').mask('00/00/0000', {placeholder: "__/__/____"});
+		$('.money').mask("#.##0,00", {reverse: true});		
+	};
+
+	function refreshN(){
 		var n = 0;
 		$(".number").each(function(){
 			$(this).html(++n);
 		})
-		*/
+	}
+	
+	function calculate(){
+		var sub_total = 0;
+		$(".preco").each(function(){
+			sub_total = sub_total + ($(this).cleanVal() * 1);
+		})
+		$("#sub_total").unmask().val(sub_total).mask("#.##0,00", {reverse: true});
+		$("#total").unmask().val($("#sub_total").cleanVal()-$("#discount").cleanVal()).mask("#.##0,00", {reverse: true});
 	};
+
+	addNewRow();
+	updateMask();
+	refreshN();
+
+	$("#add").click(function(){
+		addNewRow();
+		updateMask();
+		refreshN();
+	});
 
 	$(".removeitem").on('click',function(){
 		$(this).parent().parent().remove();
-		calculate(0,0);
+		calculate();
+		refreshN();
 	});
 
-	$("#invoice_item").delegate(".selectpicker","change",function(){
+	$("#invoice_item").on("change",".selectpicker",function(){
 		var pid = $(this).val();
 		var tr = $(this).parent().parent().parent();
 		$(".overlay").show();
@@ -62,23 +97,15 @@ $(document).ready(function(){
 		}
 	});
 
-	function calculate(){
-		var sub_total = 0;
-		$(".preco").each(function(){
-			sub_total = sub_total + ($(this).cleanVal() * 1);
-		})
-		$("#sub_total").unmask().val(sub_total).mask("#.##0,00", {reverse: true});
-		$("#total").unmask().val($("#sub_total").cleanVal()-$("#discount").cleanVal()).mask("#.##0,00", {reverse: true});
-	};
-
 	$("#discount").keyup(function(){
-		var discount = $(this).val();
-		calculate(discount,0);
+		calculate();
 	});
 
 	/*Order Accepting*/
 
 	$("#order_form").click(function(){
+		e.preventDefault();
+
 		if($('.itemrow').length < 1){
 			alert("Adicione algum item ao pedido!");
 		}else if($("#paid").val() === ""){
