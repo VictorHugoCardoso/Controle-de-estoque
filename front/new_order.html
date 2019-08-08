@@ -69,11 +69,11 @@
 		                              </tr>
 		                            </thead>
 		                            <tbody id="invoice_item">
-										<tr class="itemrow">
+										<tr id="first_invoice" class="itemrow">
 											<td scope="row"><input type="button" value="-" class="removeitem btn btn-danger"></td>
-											<th>1</th>
+											<th class="number">1</th>
 											<td>
-												<select name="pid" class="selectpicker form-control form-control-sm " title="Selecione..." data-live-search="true">
+												<select id="first_invoice" class="form-control form-control-sm " title="Selecione..." data-live-search="true">
 													<option data-tokens="1">Item 1 Item 1</option>
 													<option data-tokens="2">Item 2</option>
 													<option data-tokens="3">Item 3</option>
@@ -86,11 +86,10 @@
 											<td><input type="text" class="form-control-plaintext form-control-sm text-center money precounitario" value="100000" readonly></td>
 											<td><input type="text" class="form-control form-control-sm text-center money preco" value="100000"></td>
 										</tr>
-										
 		                            </tbody>
 		                        </table> 
 		                        <center style="padding:10px;">
-		                        	<button id="add" style="width:250px;" class="btn btn-success"><i class="fa fa-plus"></i></button>
+		                        	<button type="button" id="add" style="width:250px;" class="btn btn-success"><i class="fa fa-plus"></i></button>
 		                        </center>
 				  			</div> <!--Crad Body Ends-->
 				  		</div> <!-- Order List Crad Ends-->
