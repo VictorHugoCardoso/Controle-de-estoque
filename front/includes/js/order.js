@@ -5,32 +5,8 @@ $(document).ready(function(){
 	var yyyy = today.getFullYear();
 	$('#data').val(dd+"/"+mm+"/"+yyyy);	
 
-	function addNewRow(){
-		var $newitem = 
-		$(' \
-		<tr class="itemrow"> \
-			<td scope="row"><input type="button" value="-" class="removeitem btn btn-danger"></td> \
-			<th class="number">1</th> \
-			<td> \
-				<select class="form-control form-control-sm " title="Selecione..." data-live-search="true"> \
-					<option data-tokens="1">Item 1 Item 1</option> \
-				</select> \
-			</td> \
-			<td><input type="text" class="form-control-plaintext form-control-sm text-center estoque" value="0" readonly ></td>   \
-			<td><input type="text" class="form-control form-control-sm text-center quantidade" value="1"></td> \
-			<td><input type="text" class="form-control-plaintext form-control-sm text-center money precounitario" value="0000" readonly></td> \
-			<td><input type="text" class="form-control form-control-sm text-center money preco" value="0000"></td> \
-		</tr>\
-		');
-
-		$("#invoice_item").append($newitem);
-		
-	};
-
-	function updateMask(){
-		$('.date').mask('00/00/0000', {placeholder: "__/__/____"});
-		$('.money').mask("#.##0,00", {reverse: true});		
-	};
+	$('.date').mask('00/00/0000', {placeholder: "__/__/____"});
+	$('.money').mask("#.##0,00", {reverse: true});		
 
 	function refreshN(){
 		var n = 0;
@@ -48,13 +24,9 @@ $(document).ready(function(){
 		$("#total").unmask().val($("#sub_total").cleanVal()-$("#discount").cleanVal()).mask("#.##0,00", {reverse: true});
 	};
 
-	addNewRow();
-	updateMask();
-	refreshN();
-
 	$("#add").click(function(){
-		addNewRow();
-		updateMask();
+		$newitem = $("#first_invoice");
+		$("#invoice_item").append($newitem);
 		refreshN();
 	});
 
