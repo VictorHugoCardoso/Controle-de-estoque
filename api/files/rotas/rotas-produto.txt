@@ -1,0 +1,56 @@
+
+Buscar todos os produtos :
+
+REQUEST
+
+GET - http://localhost:9002/api/v1/produto/
+
+RETURN
+
+{
+  "status": 200,
+  "mensagem": "Produtos buscados com sucesso",
+  "conteudo": [
+    {
+        "id": 1,
+        "descricao": "BARROCO MULTICOLOR 4/6 (400g) - COR 9368"
+    },
+    {
+        "id": 2,
+        "descricao": "AGULHA CROCHE PONTA DOUR. LD-012 C/10un 3,5mm"
+    },
+    {
+        "id": 3,
+        "descricao": "EUROROMA COLORIDO 4/4 - 600 G - 915 M / BRANCO"
+    },
+    {
+        "id": 4,
+        "descricao": "EUROROMA COLORIDO 4/4 - 600 G - 915 M / PINK"
+    },
+    {
+        "id": 5,
+        "descricao": "EUROROMA COLORIDO 4/6 - 600 G - 610 M. / VERMELHO"
+    }
+  ]
+}
+
+
+Buscar produto por id : 
+
+REQUEST
+
+GET - http://localhost:9002/api/v1/produto/busca/1
+
+RETURN
+
+{
+  "status": 200,
+  "mensagem": "Produto buscado com sucesso",
+  "conteudo": {
+      "idProduto": 1,
+      "idLoja": 1,
+      "quantidade": 15,
+      "valorUnitario": 140,
+      "sigla": "M"
+  }
+}
