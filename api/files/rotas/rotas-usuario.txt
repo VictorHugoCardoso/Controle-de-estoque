@@ -1,0 +1,24 @@
+
+REQUEST
+
+POST - http://localhost:9002/api/v1/usuario/logar/
+
+
+{
+	"email": "paulloweber@gmail.com",
+	"senha": "senha"
+}
+
+RETURN
+
+{
+  "status": 200,
+  "mensagem": "Usuário logado com sucesso",
+  "conteudo": {
+      "id": 1,
+      "nome": "Paulo Weber",
+      "email": "paulloweber@gmail.com",
+      "dataCriacao": "2019-07-27T03:00:00.000Z",
+      "idLoja": 1
+  }
+}
