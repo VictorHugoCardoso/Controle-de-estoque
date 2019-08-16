@@ -4,5 +4,5 @@ VALUES ($1, $2, current_timestamp, $3, $4, $5, $6)
 RETURNING id
 `
 export const INSERT_VENDA_PRODUTO = `
-SELECT adicionar_produto_venda($1, $2, 10)
+SELECT adicionar_produto_venda($1, $2, $3)
 `

@@ -1,0 +1,25 @@
+POST - http://localhost:9002/api/v1/venda/efetua/
+
+{
+	"caminhoNota" : "asdasdasd",
+	"idUsuario" : 1,
+	"dataVenda" : "2019-08-12",
+	"valorTotal" : 100.00,
+	"desconto" : 10.00,
+	"idFormaPagamento" : 1,
+	"produtos" : 
+	[
+		{
+			"id" : 1,
+			"quantidade" : 1.00
+		},
+		{
+			"id" : 2,
+			"quantidade" : 122222222220.00
+		},
+		{
+			"id" : 3,
+			"quantidade" : 11.00
+		}
+	]
+}

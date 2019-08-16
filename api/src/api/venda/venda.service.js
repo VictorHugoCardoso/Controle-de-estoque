@@ -14,10 +14,11 @@ export async function realizaVenda (venda) {
 	}
 }
 
-export async function adicionarProdutosVenda (idVenda, idProduto) {
+export async function adicionarProdutosVenda (idVenda, idProduto, quantidadeComprada) {
 	try {
-		  await db.one(new PreparedStatement('realiza-venda-produto',  INSERT_VENDA_PRODUTO, [idVenda, idProduto]))
-    } catch (error) {
+		let resposta = await db.one(new PreparedStatement('realiza-venda-produto',  INSERT_VENDA_PRODUTO, [idVenda, idProduto, quantidadeComprada]))
+		return resposta.adicionar_produto_venda;
+  } catch (error) {
 		throw new ErrorHandler('Erro ao adicionar produtos da venda', httpStatus.BAD_REQUEST, true, error.code)
 	}
 }
