@@ -2,3 +2,5 @@
 public_html/
 
 api/node_modules/
+
+api/src/config/config.js

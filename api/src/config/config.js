@@ -8,7 +8,7 @@ if (NODE_ENV === 'development' || NODE_ENV === 'test') dotenv.config()
 export default {
 	db: {
 		user: process.env.BAZAR_43_DATABASE_USER || 'postgres',
-		pass: process.env.BAZAR_43_DATABASE_PASS || 'bancodedados',
+		pass: process.env.BAZAR_43_DATABASE_PASS || 'postgres',
 		host: process.env.BAZAR_43_DATABASE_HOST || 'localhost',
 		port: process.env.BAZAR_43_DATABASE_PORT || 5432,
 		database: (NODE_ENV === 'production') ? process.env.BAZAR_43_DATABASE_DATABASE : (NODE_ENV === 'development') ? process.env.BAZAR_43_DATABASE_DEV : (NODE_ENV === 'homolog') ? process.env.BAZAR_43_DATABASE_HOMOLOG : process.env.BAZAR_43_DATABASE_TEST
