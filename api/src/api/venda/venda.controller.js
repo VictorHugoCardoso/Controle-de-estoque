@@ -12,9 +12,7 @@ export async function efetuaVenda (req, res, next) {
       await verificaSeContemSuficienteNoEstoque(req.body.produtos)
       for (let i = 0; i < req.body.produtos.length; i++) {
         respostaAdicionaProdutoVenda = await adicionarProdutosVenda(idVendaEfetuada, req.body.produtos[i].id, req.body.produtos[i].quantidade);
-        if(!respostaAdicionaProdutoVenda) {
-          throw new ErrorHandler('Erro ao realizar a venda', httpStatus.BAD_REQUEST, true)
-        }
+        if(!respostaAdicionaProdutoVenda) throw new ErrorHandler('Erro ao realizar a venda', httpStatus.BAD_REQUEST, true)
       }
     }
     res.json(new DataHandler(httpStatus.OK, 'Venda efetuada com sucesso'))

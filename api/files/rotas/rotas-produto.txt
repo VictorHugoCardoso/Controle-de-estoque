@@ -54,3 +54,36 @@ RETURN
       "sigla": "M"
   }
 }
+
+
+Cadastrar Produto Manualmente :
+
+
+REQUEST
+
+POST - http://localhost:9002/api/v1/produto/adicionar/manualmente/
+
+
+{
+	"descricao" : "Produto Teste 1",
+	"idLoja" : 1,
+	"quantidade" : 100.0,
+	"idUnidadeMedida" : 1,
+	 "valorUnitario": 24.25
+}
+
+RETURN
+
+{
+  "status": 200,
+  "mensagem": "Produto adicionado com sucesso",
+  "conteudo": {
+      "idLoja": 1,
+      "idProduto": 21,
+      "idUnidadeMedida": 1,
+      "quantidade": 100,
+      "dataCriacao": "2019-08-17T15:31:11.047Z",
+      "tipoCriacao": 1,
+      "valorUnitario": 24.25
+  }
+}

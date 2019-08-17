@@ -54,8 +54,14 @@ CREATE table produto_loja(
   id_unidade_medida SERIAL not null references unidade_medida(id),
   quantidade FLOAT not null,
   data_criacao timestamp not NULL,
+  valor_unitario float not null,
   tipo_criacao integer not null
 );
+
+insert into produto_loja(id_loja, id_produto, id_unidade_medida, quantidade, data_criacao, tipo_criacao, valor_unitario) VALUES(1, 1, 2, 15, current_date, 1, 140.00);
+insert into produto_loja(id_loja, id_produto, id_unidade_medida, quantidade, data_criacao, tipo_criacao, valor_unitario) VALUES(1, 2, 2, 20, current_date, 1, 220.00);
+insert into produto_loja(id_loja, id_produto, id_unidade_medida, quantidade, data_criacao, tipo_criacao, valor_unitario) VALUES(1, 3, 1, 1, current_date, 1, 10.0);
+
 
 CREATE TABLE forma_pagamento(
   id SERIAL NOT null,

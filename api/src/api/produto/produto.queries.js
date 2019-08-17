@@ -9,3 +9,13 @@ inner join produto_loja on produto_loja.id_produto = produto.id
 inner join unidade_medida on unidade_medida.id = id_unidade_medida
 where produto.id = $1;
 `
+export const CADASTRA_PRODUTO = `
+INSERT INTO produto(descricao)
+VALUES($1)
+RETURNING id
+`
+export const ADICIONA_AO_ESTOQUE_MANUALMENTE = `
+INSERT INTO produto_loja(id_produto, id_loja, quantidade, data_criacao, tipo_criacao, id_unidade_medida, valor_unitario)
+VALUES($1, $2, $3, current_timestamp, $4, $5, $6)
+RETURNING *
+`
