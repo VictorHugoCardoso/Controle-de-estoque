@@ -10,6 +10,7 @@
 	<script type="text/javascript" rel="stylesheet" src="./includes/js/jquery.mask.js"></script>
 	<script src="./includes/remote_includes/popper.min.js"></script>
 	<script src="./includes/remote_includes/bootstrap.min.js"></script>
+	<script src="./includes/remote_includes/shortcut.js"></script>
 	<script src="./includes/js/bootstrap-select.min.js"></script>
 	<script src="./includes/js/bootstrap-select.min-language.js"></script>
 
@@ -69,11 +70,11 @@
 		                              </tr>
 		                            </thead>
 		                            <tbody id="invoice_item">
-										<tr class="itemrow" id="first_invoice">
+										<tr class="itemrow d-none" id="first_invoice">
 											<td scope="row"><input type="button" value="-" class="removeitem btn btn-danger"></td>
 											<th class="number">1</th>
 											<td>
-												<select name="pid" class="form-control form-control-sm itemselect" title="Selecione..." data-live-search="true">
+												<select id="firstitemselect" name="pid" class="form-control form-control-sm itemselect" title="Selecione..." data-live-search="true">
 												</select>
 											</td>
 											<td><input type="text" class="form-control-plaintext form-control-sm text-center estoque" value="0" readonly ></td>   

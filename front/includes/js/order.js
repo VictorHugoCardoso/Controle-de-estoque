@@ -8,23 +8,28 @@ $(document).ready(function(){
 	$('.date').mask('00/00/0000', {placeholder: "__/__/____"});
 	$('.money').mask("#.##0,00", {reverse: true});
 
-	var estoque = ['item1','item2','item3','item4'];
+	shortcut.add("F1", function() {
+		$("#order_form").click();
+	});
 
-	function getEstoque(){
+	function setEstoque(){
 		$(".overlay").show();
 		setTimeout(function(){
+			var estoque = ['item1','item2','item3','item4'];
+
 			$.each(estoque, function (i, item) {
-				$('.itemselect').append($('<option>', { 
+				$('#firstitemselect').append($('<option>', { 
 						text: item 
 				}));
 			});
 			$(".overlay").hide();
+			addNewItem();			
 		}, 100);
 	}
-	getEstoque();
+	setEstoque();
 
 	function refreshN(){
-		var n = 0;
+		var n = -1;
 		$(".number").each(function(){
 			$(this).html(++n);
 		})
@@ -36,20 +41,27 @@ $(document).ready(function(){
 			sub_total = sub_total + ($(this).cleanVal() * 1);
 		})
 		$("#sub_total").unmask().val(sub_total).mask("#.##0,00", {reverse: true});
-		$("#total").unmask().val($("#sub_total").cleanVal()-$("#discount").cleanVal()).mask("#.##0,00", {reverse: true});
+		var total = $("#sub_total").cleanVal()-$("#discount").cleanVal();
+		$("#total").unmask().val(total).mask("#.##0,00", {reverse: true});
+		$("#paid").unmask().val(total).mask("#.##0,00", {reverse: true});
 	};
 
-	$("#add").click(function(){
-		$newitem = $("#first_invoice").clone().removeAttr('id');;
+	function addNewItem(){
+		$newitem = $("#first_invoice").clone().removeAttr('id').removeClass('d-none');
 		$("#invoice_item").append($newitem);
 		refreshN();
 		$newitem.find('.estoque').val('0');
 		$newitem.find('.quantidade').val('1');
 		$newitem.find('.precounitario').val('0000');
 		$newitem.find('.preco').val('0000');
+		$newitem.find('.itemselect').removeAttr('id').selectpicker();
 		$('.money').mask("#.##0,00", {reverse: true});
-		
+
 		$newitem.find('.itemselect').focus();
+	}
+
+	$("#add").click(function(){
+		addNewItem();
 	});
 
 	$("#invoice_item").delegate(".removeitem","click",function(){
@@ -60,7 +72,7 @@ $(document).ready(function(){
 
 	$("#invoice_item").on("change","select",function(){
 		var pid = $(this).val();
-		var tr = $(this).parent().parent();
+		var tr = $(this).closest('tr');
 		$(".overlay").show();
 		setTimeout(function(){
 			var estoque = Math.floor((Math.random() * 100) + 1);
@@ -107,29 +119,17 @@ $(document).ready(function(){
 		calculate();
 	});
 	
-
-	/*Order Accepting*/
-
-	$("#order_form").click(function(){
+	$("#order_form").click(function(e){
 		e.preventDefault();
 
 		if($('.itemrow').length < 1){
-			alert("Adicione algum item ao pedido!");
-		}else if($("#paid").val() === ""){
-			alert("Entre com o valor pago!");
-		}else{
-			funfo = 0;
-			if (funfo < 0) {
-				alert(data);
-			}else{
-				var invoice = $("#get_order_data").serialize();
-				$("#get_order_data").trigger("reset");
+			var invoice = $("#get_order_data").serialize();
 
+			if (confirm("Finalizar Pedido?")) {
 				if (confirm("Gostaria de imprimir o cupom não fiscal?")) {
-					
+				
 				}
 			}
 		}
 	});
-
 });
