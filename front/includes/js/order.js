@@ -48,6 +48,8 @@ $(document).ready(function(){
 		$newitem.find('.precounitario').val('0000');
 		$newitem.find('.preco').val('0000');
 		$('.money').mask("#.##0,00", {reverse: true});
+		
+		$newitem.find('.itemselect').focus();
 	});
 
 	$("#invoice_item").delegate(".removeitem","click",function(){
@@ -95,9 +97,15 @@ $(document).ready(function(){
 	});
 
 	$("#discount").keyup(function(){
+		var discount = parseInt($(this).cleanVal());
+		var subtotal = parseInt($("#sub_total").cleanVal());
+		
+		if(discount >= subtotal){
+			alert('O desconto não pode ser maior que o subtotal');
+			$("#discount").unmask().val(0).mask("#.##0,00", {reverse: true})
+		}
 		calculate();
 	});
-
 	
 
 	/*Order Accepting*/
