@@ -122,7 +122,16 @@ $(document).ready(function(){
 	$("#order_form").click(function(e){
 		e.preventDefault();
 
-		if($('.itemrow').length < 1){
+		
+		if($('.itemrow').length <= 1){
+			alert("Adicione algum item ao pedido!");
+		}else if($('.itemrow').length > 1){
+			//validacao
+		}else if($("#total").val() === ""){
+			alert("Nenhum total selecionado!");
+		}else if($("#paid").val() === ""){
+			alert("Entre com o valor pago!");
+		}else{
 			var invoice = $("#get_order_data").serialize();
 
 			if (confirm("Finalizar Pedido?")) {
