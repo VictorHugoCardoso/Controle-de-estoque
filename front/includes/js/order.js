@@ -6,7 +6,22 @@ $(document).ready(function(){
 	$('#data').val(dd+"/"+mm+"/"+yyyy);	
 
 	$('.date').mask('00/00/0000', {placeholder: "__/__/____"});
-	$('.money').mask("#.##0,00", {reverse: true});		
+	$('.money').mask("#.##0,00", {reverse: true});
+
+	var estoque = ['item1','item2','item3','item4'];
+
+	function getEstoque(){
+		$(".overlay").show();
+		setTimeout(function(){
+			$.each(estoque, function (i, item) {
+				$('.itemselect').append($('<option>', { 
+						text: item 
+				}));
+			});
+			$(".overlay").hide();
+		}, 100);
+	}
+	getEstoque();
 
 	function refreshN(){
 		var n = 0;
@@ -25,20 +40,25 @@ $(document).ready(function(){
 	};
 
 	$("#add").click(function(){
-		$newitem = $("#first_invoice");
+		$newitem = $("#first_invoice").clone().removeAttr('id');;
 		$("#invoice_item").append($newitem);
 		refreshN();
+		$newitem.find('.estoque').val('0');
+		$newitem.find('.quantidade').val('1');
+		$newitem.find('.precounitario').val('0000');
+		$newitem.find('.preco').val('0000');
+		$('.money').mask("#.##0,00", {reverse: true});
 	});
 
-	$(".removeitem").on('click',function(){
-		$(this).parent().parent().remove();
+	$("#invoice_item").delegate(".removeitem","click",function(){
+		var tr = $(this).parent().parent().remove();
 		calculate();
 		refreshN();
 	});
 
-	$("#invoice_item").on("change",".selectpicker",function(){
+	$("#invoice_item").on("change","select",function(){
 		var pid = $(this).val();
-		var tr = $(this).parent().parent().parent();
+		var tr = $(this).parent().parent();
 		$(".overlay").show();
 		setTimeout(function(){
 			var estoque = Math.floor((Math.random() * 100) + 1);
@@ -69,9 +89,16 @@ $(document).ready(function(){
 		}
 	});
 
+		
+	$("#invoice_item").delegate(".preco","keyup",function(){
+		calculate();
+	});
+
 	$("#discount").keyup(function(){
 		calculate();
 	});
+
+	
 
 	/*Order Accepting*/
 
