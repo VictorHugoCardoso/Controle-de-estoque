@@ -60,17 +60,6 @@ $(document).ready(function(){
 		$newitem.find('.itemselect').focus();
 	}
 
-	function getFormData($form){
-		var unindexed_array = $form.serializeArray();
-		var indexed_array = {};
-	
-		$.map(unindexed_array, function(n, i){
-			indexed_array[n['name']] = n['value'];
-		});
-	
-		return indexed_array;
-	}
-
 	$("#add").click(function(){
 		addNewItem();
 	});
@@ -155,20 +144,28 @@ $(document).ready(function(){
 			$("#first_invoice").remove();
 
 			var formData = $("#get_order_data").serializeArray();
-	
+			
+			var data = {};
+			$(formData).each(function(index, obj){
+				data[obj.name] = obj.value;
+			});
+			console.log(data);
+
 			var items = [];
 			$('.itemselect select').each(function(){
+				var tr = $(this).closest('tr');
 				var item = [];
-				item.push({name:'nomeItem', value: 'meupau'}); 
-				item.push({name:'quantidade', value: '1'}); 
+				item['nomeItem'] = $(this).val();
+				item['quantidade'] = parseInt(tr.find('.quantidade').unmask().val());
+				item['total'] = parseFloat(tr.find('.precototal').val().replace(",", "."));
 				items.push(item);
 			});
-			formData.push({name:'produtos', value: items});
-				
-			console.log(formData);
+			data['produtos'] = items;
+		
+			console.log(data);
 			
-			var jsonData =  JSON.stringify(jsonData);
-			console.log(jsonData);
+			var jsonData =  JSON.stringify(data);
+			console.log(data);
 
 			/*
 			if (confirm("Finalizar Pedido?")) {
