@@ -37,7 +37,7 @@ $(document).ready(function(){
 	
 	function calculate(){
 		var sub_total = 0;
-		$(".preco").each(function(){
+		$(".precototal").each(function(){
 			sub_total = sub_total + ($(this).cleanVal() * 1);
 		})
 		$("#sub_total").unmask().val(sub_total).mask("#.##0,00", {reverse: true});
@@ -53,11 +53,22 @@ $(document).ready(function(){
 		$newitem.find('.estoque').val('0');
 		$newitem.find('.quantidade').val('1');
 		$newitem.find('.precounitario').val('0000');
-		$newitem.find('.preco').val('0000');
+		$newitem.find('.precototal').val('0000');
 		$newitem.find('.itemselect').removeAttr('id').selectpicker();
 		$('.money').mask("#.##0,00", {reverse: true});
 
 		$newitem.find('.itemselect').focus();
+	}
+
+	function getFormData($form){
+		var unindexed_array = $form.serializeArray();
+		var indexed_array = {};
+	
+		$.map(unindexed_array, function(n, i){
+			indexed_array[n['name']] = n['value'];
+		});
+	
+		return indexed_array;
 	}
 
 	$("#add").click(function(){
@@ -80,7 +91,7 @@ $(document).ready(function(){
 
 			tr.find(".estoque").val(estoque);
 			tr.find(".precounitario").unmask().val(precounitario).mask("#.##0,00", {reverse: true});
-			tr.find(".preco").unmask().val(precounitario).mask("#.##0,00", {reverse: true});
+			tr.find(".precototal").unmask().val(precounitario).mask("#.##0,00", {reverse: true});
 			calculate();
 			$(".overlay").hide();
 		}, 500);
@@ -97,13 +108,13 @@ $(document).ready(function(){
 				alert("Quantidade não disponível no estoque!");
 				qty.val(1);
 			}else{
-				tr.find(".preco").unmask().val(qty.val() * tr.find(".precounitario").cleanVal()).mask("#.##0,00", {reverse: true});
+				tr.find(".precototal").unmask().val(qty.val() * tr.find(".precounitario").cleanVal()).mask("#.##0,00", {reverse: true});
 				calculate();
 			}
 		}
 	});
 		
-	$("#invoice_item").delegate(".preco","keyup",function(){
+	$("#invoice_item").delegate(".precototal","keyup",function(){
 		calculate();
 	});
 
@@ -133,14 +144,21 @@ $(document).ready(function(){
 		
 		if($('.itemrow').length <= 1){
 			alert("Adicione algum item ao pedido!");
+		}else if(validapedido){
+			alert("Informe o nome do produto!");
 		}else if($("#total").val() === ""){
 			alert("Nenhum total selecionado!");
 		}else if($("#paid").val() === ""){
 			alert("Entre com o valor pago!");
-		}else if(!validapedido){
-			alert("Informe o nome do produto!");
 		}else{
-			var invoice = $("#get_order_data").serialize();
+
+			$("#first_invoice").remove();
+
+			console.log($("#get_order_data"));
+			console.log($("#get_order_data").serializeArray());
+			console.log(JSON.stringify($("#get_order_data").serializeArray()));
+			var data =  JSON.stringify(getFormData($("#get_order_data")));
+			console.log(data);
 
 			if (confirm("Finalizar Pedido?")) {
 				if (confirm("Gostaria de imprimir o cupom não fiscal?")) {
