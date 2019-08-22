@@ -149,12 +149,16 @@ $(document).ready(function(){
 			$(formData).each(function(index, obj){
 				data[obj.name] = obj.value;
 			});
-			console.log(data);
+			
+			data['data'] = data['data'].split('/').reverse().join('/').replace(/\//g,'-');
+			data['sub_total'] = parseFloat(data['sub_total'].replace(",", "."));
+			data['total'] = parseFloat(data['total'].replace(",", "."));
+			data['pago'] = parseFloat(data['pago'].replace(",", "."));
 
 			var items = [];
 			$('.itemselect select').each(function(){
 				var tr = $(this).closest('tr');
-				var item = [];
+				var item = {};
 				item['nomeItem'] = $(this).val();
 				item['quantidade'] = parseInt(tr.find('.quantidade').unmask().val());
 				item['total'] = parseFloat(tr.find('.precototal').val().replace(",", "."));
@@ -162,10 +166,8 @@ $(document).ready(function(){
 			});
 			data['produtos'] = items;
 		
-			console.log(data);
-			
 			var jsonData =  JSON.stringify(data);
-			console.log(data);
+			console.log(jsonData);
 
 			/*
 			if (confirm("Finalizar Pedido?")) {
