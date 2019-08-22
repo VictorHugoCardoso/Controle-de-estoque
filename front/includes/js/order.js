@@ -154,18 +154,30 @@ $(document).ready(function(){
 
 			$("#first_invoice").remove();
 
-			console.log($("#get_order_data"));
-			console.log($("#get_order_data").serializeArray());
-			console.log(JSON.stringify($("#get_order_data").serializeArray()));
-			var data =  JSON.stringify(getFormData($("#get_order_data")));
-			console.log(data);
+			var formData = $("#get_order_data").serializeArray();
+	
+			var items = [];
+			$('.itemselect select').each(function(){
+				var item = [];
+				item.push({name:'nomeItem', value: 'meupau'}); 
+				item.push({name:'quantidade', value: '1'}); 
+				items.push(item);
+			});
+			formData.push({name:'produtos', value: items});
+				
+			console.log(formData);
+			
+			var jsonData =  JSON.stringify(jsonData);
+			console.log(jsonData);
 
+			/*
 			if (confirm("Finalizar Pedido?")) {
 				if (confirm("Gostaria de imprimir o cupom não fiscal?")) {
 					
 				}
 				$("#get_order_data").trigger("reset");
 			}
+			*/
 		}
 	});
 });
