@@ -162,8 +162,9 @@ $(document).ready(function(){
 
 			if (confirm("Finalizar Pedido?")) {
 				if (confirm("Gostaria de imprimir o cupom não fiscal?")) {
-				
+					
 				}
+				$("#get_order_data").trigger("reset");
 			}
 		}
 	});
