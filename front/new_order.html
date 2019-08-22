@@ -65,6 +65,7 @@
 		                                <th style="text-align:left;" scope="col" width="30%">Nome</th>
 		                                <th style="text-align:center;" scope="col" width="15%">Estoque</th>
 		                                <th style="text-align:center;" scope="col" width="5%">Quant.</th>
+		                                <th style="text-align:center;" scope="col" width="15%">Preço Un.</th>
 		                                <th style="text-align:center;" scope="col" width="15%">Preço</th>
 		                                <th style="text-align:center;" scope="col" width="35%">Total</th>
 		                              </tr>
@@ -78,11 +79,10 @@
 												</select>
 											</td>
 											<td><input type="text" class="form-control-plaintext form-control-sm text-center estoque" value="0" readonly ></td>   
-											<td><input type="text" class="form-control form-control-sm text-center quantidade" value="1"></td>
+											<td><input type="text" class="form-control form-control-sm text-center qu>antidade" value="1"></td>
 											<td><input type="text" class="form-control-plaintext form-control-sm text-center money precounitario" value="0000" readonly></td>
 											<td><input type="text" class="form-control form-control-sm text-center money preco" value="0000"></td>
 										</tr>
-										
 		                            </tbody>
 		                        </table> 
 		                        <center style="padding:10px;">
@@ -126,6 +126,7 @@
                       </div>
                     </div>
                     <center>
+						<input type="button" id="teste" style="width:150px;" class="btn btn-info mb-4" value="ASD">
                       <input type="submit" id="order_form" style="width:150px;" class="btn btn-info mb-4" value="Finalizar venda">
                       <input type="submit" id="print_invoice" style="width:150px;" class="btn btn-success d-none" value="Print Invoice">
                     </center>

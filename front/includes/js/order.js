@@ -102,7 +102,6 @@ $(document).ready(function(){
 			}
 		}
 	});
-
 		
 	$("#invoice_item").delegate(".preco","keyup",function(){
 		calculate();
@@ -118,19 +117,28 @@ $(document).ready(function(){
 		}
 		calculate();
 	});
-	
+	$("#teste").click(function(){
+		
+	});
+
 	$("#order_form").click(function(e){
 		e.preventDefault();
-
+		
+		var validapedido = false;
+		$(".itemselect select").each(function(n){
+			if($(this).val() === ''){
+				validapedido = true;
+			}
+		});
 		
 		if($('.itemrow').length <= 1){
 			alert("Adicione algum item ao pedido!");
-		}else if($('.itemrow').length > 1){
-			//validacao
 		}else if($("#total").val() === ""){
 			alert("Nenhum total selecionado!");
 		}else if($("#paid").val() === ""){
 			alert("Entre com o valor pago!");
+		}else if(!validapedido){
+			alert("Informe o nome do produto!");
 		}else{
 			var invoice = $("#get_order_data").serialize();
 
