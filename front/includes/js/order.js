@@ -151,7 +151,7 @@ $(document).ready(function(){
 			});
 			
 			data['data'] = data['data'].split('/').reverse().join('/').replace(/\//g,'-');
-			data['sub_total'] = parseFloat(data['sub_total'].replace(",", "."));
+			data['subTotal'] = parseFloat(data['subTotal'].replace(",", "."));
 			data['total'] = parseFloat(data['total'].replace(",", "."));
 			data['pago'] = parseFloat(data['pago'].replace(",", "."));
 
