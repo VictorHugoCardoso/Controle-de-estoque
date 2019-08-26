@@ -150,16 +150,27 @@ $(document).ready(function(){
 				data[obj.name] = obj.value;
 			});
 			
-			data['data'] = data['data'].split('/').reverse().join('/').replace(/\//g,'-');
+			data['dataVenda'] = data['dataVenda'].split('/').reverse().join('/').replace(/\//g,'-');
 			data['subTotal'] = parseFloat(data['subTotal'].replace(",", "."));
-			data['total'] = parseFloat(data['total'].replace(",", "."));
+			
+			if(data['desconto'] == ""){
+				data['desconto'] = 0;
+			}else{
+				data['desconto'] = parseFloat(data['desconto'].replace(",", "."));
+			}
+
+			data['valorTotal'] = parseFloat(data['valorTotal'].replace(",", "."));
 			data['pago'] = parseFloat(data['pago'].replace(",", "."));
+			data['caminhoNota'] = '/home/victor';
+			data['idUsuario'] = 1;
+			data['idFormaPagamento'] = 1;
 
 			var items = [];
 			$('.itemselect select').each(function(){
 				var tr = $(this).closest('tr');
 				var item = {};
 				item['nomeItem'] = $(this).val();
+				item['id'] = 1;
 				item['quantidade'] = parseInt(tr.find('.quantidade').unmask().val());
 				item['total'] = parseFloat(tr.find('.precototal').val().replace(",", "."));
 				items.push(item);
@@ -167,17 +178,21 @@ $(document).ready(function(){
 			data['produtos'] = items;
 		
 			var jsonData =  JSON.stringify(data);
+			console.log(jsonData);
 
 			if (confirm("Finalizar Pedido?")) {
 				if (confirm("Gostaria de imprimir o cupom não fiscal?")) {
 					
 				}
-
+				$(".overlay").show();
 				$.ajax({
 					url : 'http://localhost:9002/api/v1/venda/efetua/',
 					type : 'POST',
 					data : jsonData,
 					dataType:'json',
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
 					success : function(data) {
 						console.log('Data: '+data);
 
@@ -185,6 +200,9 @@ $(document).ready(function(){
 					},
 					error : function(request,error){
 						console.log(error);
+					},
+					always : function() {
+						
 					}
 				});
 			}
