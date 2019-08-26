@@ -23,7 +23,7 @@ $(document).ready(function(){
 				}));
 			});
 			$(".overlay").hide();
-			addNewItem();			
+			addNewItem();	
 		}, 100);
 	}
 	setEstoque();
@@ -180,11 +180,14 @@ $(document).ready(function(){
 			var jsonData =  JSON.stringify(data);
 			console.log(jsonData);
 
-			if (confirm("Finalizar Pedido?")) {
-				if (confirm("Gostaria de imprimir o cupom não fiscal?")) {
-					
-				}
+			$('#sendForm').modal('show');
+			$('#sendFormYes').on('click',function(){
+
+				$('#sendForm').modal('hide');
 				$(".overlay").show();
+				$("#callContent").removeClass('alert-success');
+				$("#callContent").removeClass('alert-error');
+				
 				$.ajax({
 					url : 'http://localhost:9002/api/v1/venda/efetua/',
 					type : 'POST',
@@ -194,18 +197,22 @@ $(document).ready(function(){
 						request.setRequestHeader("Content-Type", "application/json");
 					},
 					success : function(data) {
-						console.log('Data: '+data);
+						console.log(data);
 
+						$(".overlay").hide();
+						$("#ajaxCall").modal("show");
+						$("#callTitle").html('Sucesso!');
+						$("#callContent").addClass('alert-success').html('Deu certo em mermao.');
+						
 						$("#get_order_data").trigger("reset");
+						$('#data').val(dd+"/"+mm+"/"+yyyy);
+						// clear items
 					},
 					error : function(request,error){
 						console.log(error);
-					},
-					always : function() {
-						
 					}
 				});
-			}
+			});
 		}
 	});
 });
