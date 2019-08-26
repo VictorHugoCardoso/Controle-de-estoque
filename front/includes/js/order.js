@@ -167,16 +167,27 @@ $(document).ready(function(){
 			data['produtos'] = items;
 		
 			var jsonData =  JSON.stringify(data);
-			console.log(jsonData);
 
-			/*
 			if (confirm("Finalizar Pedido?")) {
 				if (confirm("Gostaria de imprimir o cupom não fiscal?")) {
 					
 				}
-				$("#get_order_data").trigger("reset");
+
+				$.ajax({
+					url : 'http://localhost:9002/api/v1/venda/efetua/',
+					type : 'POST',
+					data : jsonData,
+					dataType:'json',
+					success : function(data) {
+						console.log('Data: '+data);
+
+						$("#get_order_data").trigger("reset");
+					},
+					error : function(request,error){
+						console.log(error);
+					}
+				});
 			}
-			*/
 		}
 	});
 });
