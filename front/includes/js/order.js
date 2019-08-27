@@ -207,6 +207,8 @@ $(document).ready(function(){
 						$("#get_order_data").trigger("reset");
 						$('#data').val(dd+"/"+mm+"/"+yyyy);
 						// clear items
+						// validações nos campos sem alert
+						// quando cancela o enviar form e tenta de novo, buga
 					},
 					error : function(request,error){
 						console.log(error);

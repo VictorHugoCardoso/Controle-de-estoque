@@ -15,12 +15,10 @@
 	<script src="./includes/remote_includes/bootstrap-select.min.js"></script>
 	<script src="./includes/remote_includes/bootstrap-select.min-language.js"></script>
 
-	<link rel="stylesheet" href="./includes/remote_includes/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./includes/remote_includes/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./includes/css/style.css">
-	<link rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-	<link rel="stylesheet" type="text/css"
-		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./includes/remote_includes/bootstrap-select.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -157,10 +155,10 @@
 						</div>
 					</div>
 					<center>
-						<input type="submit" id="order_form" style="width:150px;" class="btn btn-info mb-4"
-							value="Finalizar venda">
-						<input type="submit" id="print_invoice" style="width:150px;" class="btn btn-success d-none"
-							value="Print Invoice">
+						<button type="submit" id="order_form" style="width:200px;" class="btn btn-info mb-4">
+							Finalizar venda &nbsp;
+							<i class="fa fa-arrow-right"></i>
+						</button>
 					</center>
 					</form>
 				</div>
@@ -199,8 +197,8 @@
 								<input type="checkbox" class="form-check-input" id="imprimirCupom" checked>
 								<label class="form-check-label" for="exampleCheck1">Imprimir cupom</label>
 							</div>
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
-							<button type="button" class="btn btn-success" id="sendFormYes">Sim</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times">&nbsp;</i>Não</button>
+							<button type="button" class="btn btn-success" id="sendFormYes"><i class="fa fa-check">&nbsp;</i>Sim</button>
 						</div>
 						</div>
 					</div>
