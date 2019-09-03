@@ -15,15 +15,27 @@ $(document).ready(function(){
 	function setEstoque(){
 		$(".overlay").show();
 		setTimeout(function(){
-			var estoque = ['item1','item2','item3','item4'];
+			$.ajax({
+				url : 'http://localhost:9002/api/v1/produto/',
+				type : 'GET',
+				dataType:'json',
+				beforeSend: function(request) {
+					request.setRequestHeader("Content-Type", "application/json");
+				},
+				success : function(data) {
+					data['conteudo'].forEach(function(item){
+						$('#firstitemselect').append($('<option>', { 
+							text: item.descricao 
+						}));
+					});
 
-			$.each(estoque, function (i, item) {
-				$('#firstitemselect').append($('<option>', { 
-						text: item 
-				}));
-			});
-			$(".overlay").hide();
-			addNewItem();	
+					$(".overlay").hide();
+					addNewItem();
+				},
+				error : function(request,error){
+					alert('Não foi possível carregar os itens!');
+				}
+			});	
 		}, 100);
 	}
 	setEstoque();
