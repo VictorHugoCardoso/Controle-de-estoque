@@ -2,7 +2,7 @@ import ErrorHandler from '../../handlers/error.handler'
 import db from '../../db/db'
 import { PreparedStatement } from 'pg-promise'
 import httpStatus from 'http-status'
-import { BUSCA_TODOS, BUSCA_POR_ID, CADASTRA_PRODUTO, ADICIONA_AO_ESTOQUE_MANUALMENTE } from './produto.queries'
+import { BUSCA_TODOS, BUSCA_POR_ID, CADASTRA_PRODUTO, ADICIONA_AO_ESTOQUE_MANUALMENTE, BUSCA_POR_NOME } from './produto.queries'
 
 export async function consultarTodos () {
 	try {
@@ -42,5 +42,14 @@ export async function adicionaProdutoAoEstoqueManualmente(produto) {
     return produtoCadastrado
   } catch (error) {
 		throw new ErrorHandler('Erro ao cadastrar o produto no estoque.', httpStatus.BAD_REQUEST, true, error.code)
-	}
-}
+  }
+} 
+  export async function consultarProdutoPorNome (nomeProduto) {
+    try {
+      const informacaoProduto = new PreparedStatement('busca-produto-nome', BUSCA_POR_NOME, [nomeProduto])
+      const produtoBuscado = await db.oneOrNone(informacaoProduto)
+      return produtoBuscado
+    } catch (error) {
+      throw new ErrorHandler('Erro ao buscar o produto', httpStatus.BAD_REQUEST, true, error.code)
+    }
+  }

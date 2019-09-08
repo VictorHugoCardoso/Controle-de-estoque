@@ -1,4 +1,4 @@
-import { consultarTodos, consultarProdutoPorId, adicionaProdutoAoEstoqueManualmente, cadastrarProduto } from '../produto/produto.service'
+import { consultarTodos, consultarProdutoPorId, adicionaProdutoAoEstoqueManualmente, cadastrarProduto, consultarProdutoPorNome } from '../produto/produto.service'
 import DataHandler from '../../handlers/data.handler'
 import httpStatus from 'http-status'
 import camelize from 'camelize'
@@ -21,10 +21,17 @@ export async function buscaProdutoPorId (req, res, next) {
 
 export async function cadastraProdutoManualmente (req, res, next) {
 	try {
-		let idProdutoCadastrado = (await cadastrarProduto(req.body)).id;
-		req.body.idProduto = idProdutoCadastrado
-		let produtoAdicionadoAoEstoque = await adicionaProdutoAoEstoqueManualmente(req.body)
-		res.json(new DataHandler(httpStatus.OK, 'Produto adicionado com sucesso', camelize(produtoAdicionadoAoEstoque)))
+		let produtos = req.body.produtos
+		for (let i = 0; i < produtos.length; i++) {
+			let idProdutoCadastrado
+			let produtoBuscado = await consultarProdutoPorNome(produtos[i].descricao)
+			if (produtoBuscado) idProdutoCadastrado = produtoBuscado.id_produto
+			else idProdutoCadastrado = (await cadastrarProduto(produtos[i])).id; 
+			produtos[i].idProduto = idProdutoCadastrado
+			await adicionaProdutoAoEstoqueManualmente(produtos[i])
+		}
+
+		res.json(new DataHandler(httpStatus.OK, 'Produtos adicionados com sucesso',))
 	} catch (error) {
 		next(error)
 	}
