@@ -1,0 +1,14 @@
+tela inicial
+    nota consumidor
+
+order
+    modal em buscar produto
+    editar o preço unitario
+    preco de compra
+    atalho para buscar produtos modal
+
+editar produto
+    preco venda
+
+cadastrar produto
+    descricao, codigo, quantidade, valor custo, valor venda
